@@ -29,6 +29,13 @@
       </div>
     </header>
     <main>
+      <!-- spinner -->
+<div id="loading-spinner" class="text-center  hidden">
+  <span class="loading loading-bars loading-lg"></span>
+</div>
+
+       
+  
       <!-- show phones -->
       <section>
         <div class="grid grid-cols-4 gap-4" id="phone-container">
@@ -37,6 +44,9 @@
           </div>
         </div>
       </section>
+      <div class="text-center hidden my-10" id="more-btn">
+        <button onclick="showAllHandler()" class="btn btn-outline btn-primary">View more</button>
+      </div>
     </main>
     <script src="js/phone_finder.js"></script>
   </body>

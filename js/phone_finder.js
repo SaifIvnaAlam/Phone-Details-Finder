@@ -12,14 +12,14 @@
 
 //load Phone call
 
-const fetchPhoneData = async (name) => {
+const fetchPhoneData = async (name, isViewMore) => {
   const res = await fetch(
     `https://openapi.programming-hero.com/api/phones?search=${name}`
   );
   const data = await res.json();
   //   loadData(data);
   const phones = data.data;
-  displayPhones(phones);
+  displayPhones(phones, isViewMore);
 };
 
 // function loadData(data) {
@@ -27,11 +27,20 @@ const fetchPhoneData = async (name) => {
 //     console.log(a);
 //   }
 // }
-const displayPhones = (phones) => {
+const displayPhones = (phones, isViewMore) => {
   const phoneContainer = document.getElementById("phone-container");
-  // phoneContainer.innerText = ``;
-  // phoneContainer.innerHTML = "";
+  const viewMoreButton = document.getElementById("more-btn");
+
   phoneContainer.textContent = ``;
+
+  if (phones.length > 16 && !isViewMore) {
+    viewMoreButton.classList.remove("hidden");
+  } else {
+    viewMoreButton.classList.add("hidden");
+  }
+  if (!isViewMore) {
+    phones = phones.slice(0, 16);
+  }
 
   phones.forEach((element) => {
     const phoneCard = document.createElement("div");
@@ -49,15 +58,33 @@ const displayPhones = (phones) => {
       <div class="card-actions">
         <button class="btn btn-primary">Show details</button>
       </div>
+      
+
     </div>`;
     phoneContainer.appendChild(phoneCard);
   });
+  toggleLoadingSpinner(false);
 };
 
 // fetchPhoneData();
 
-const searchButtonPressed = () => {
+const searchButtonPressed = (isViewMore) => {
   const searchField = document.getElementById("search-field");
-  fetchPhoneData(searchField.value);
+  fetchPhoneData(searchField.value, isViewMore);
+  toggleLoadingSpinner(true);
   console.log(searchField.value);
+};
+
+const toggleLoadingSpinner = (isLoading) => {
+  const loadingSpinner = document.getElementById("loading-spinner");
+  if (isLoading) {
+    loadingSpinner.classList.remove("hidden");
+  } else {
+    loadingSpinner.classList.add("hidden");
+  }
+};
+
+//Show all
+const showAllHandler = () => {
+  searchButtonPressed(true);
 };
