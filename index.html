@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Phone finder</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@3.7.3/dist/full.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <!-- search -->
+    <header>
+      <h1 class="font-bold text-center text-3xl">
+        Find your Desired phone details
+      </h1>
+      <!-- search Div -->
+      <div class="flex justify-center my-12">
+        <input
+        id="search-field"
+          type="text"
+          placeholder="Enter phone name"
+          class="input input-bordered input-warning mx-10 w-96 max-w-xs"
+        />
+        <button onclick="searchButtonPressed()" class="btn btn-secondary" id="search-btn">Search</button>
+      </div>
+    </header>
+    <main>
+      <!-- show phones -->
+      <section>
+        <div class="grid grid-cols-4 gap-4" id="phone-container">
+          <!-- each-cards -->
+          
+          </div>
+        </div>
+      </section>
+    </main>
+    <script src="js/phone_finder.js"></script>
+  </body>
+</html>
